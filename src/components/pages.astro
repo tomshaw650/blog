@@ -2,12 +2,11 @@
   const posts = await Astro.glob('../pages/posts/*.md');
 ---
 
-<div>
+<div class="grid p-4 lg:p-8 gap-y-10 xl:gap-y-20 w-full">
   {posts.slice(0, 3).map((post) => (
-    <article>
-      <h1>{post.frontmatter.title}</h1>
-      <p>{post.frontmatter.description}</p>
-      <a href={post.frontmatter.url}>Read more</a>
+    <article class="pb-4 border-b-2 border-black">
+      <h1 class="font-bold text-3xl"><a class="hover:underline" href={post.frontmatter.url}>{post.frontmatter.title}</a></h1>
+      <p class="italic">{post.frontmatter.description}</p>
     </article>
   ))}
 </div>

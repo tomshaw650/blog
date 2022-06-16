@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/header.astro';
-// import Pages from '../components/pages.astro';
+import Pages from '../components/pages.astro';
+import "../style/global.css";
 
 const title = "Tom's Blog"
 ---
 
 <BaseLayout title={title}>
   <Header />
-
+  <Pages />
 </BaseLayout>
