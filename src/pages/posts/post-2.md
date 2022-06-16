@@ -4,7 +4,7 @@ setup: |
 title: Post 2
 description: Another example blog post
 date: 16-06-2022
-url: /posts/post-2
+url: /blog/posts/post-2
 author: "Tom Shaw"
 ---
 
