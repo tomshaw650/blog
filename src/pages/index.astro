@@ -1,13 +1,12 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/header.astro';
+// import Pages from '../components/pages.astro';
 
+const title = "Tom's Blog"
 ---
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+
+<BaseLayout title={title}>
+  <Header />
+
+</BaseLayout>
