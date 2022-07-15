@@ -1,14 +1,15 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
 
-const {title} = Astro.props;
+const { content } = Astro.props;
 ---
 <html lang="en">
   <head>
-    <BaseHead title={title} />
+    <BaseHead title={content.title} />
   </head>
 
-	<body>
+	<body class="p-16">
+    <h1 class="text-5xl font-semibold mb-10">{content.title}</h1>
 		<slot />
 	</body>
 
