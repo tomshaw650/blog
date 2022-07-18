@@ -10,3 +10,15 @@ body {
   background-color: #EFDCF9;
   height: 100%;
 }
+
+h3 {
+  @apply text-xl;
+}
+
+p {
+  @apply pb-5;
+}
+
+p a {
+    @apply text-sky-500 font-semibold hover:font-bold;
+}
