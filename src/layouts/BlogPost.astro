@@ -8,24 +8,11 @@ const { content } = Astro.props;
     <BaseHead title={content.title} />
   </head>
 
-	<body class="p-16 w-5/6">
-    <h1 class="text-5xl font-semibold mb-10">{content.title}</h1>
-		<slot />
-	</body>
+    <body class="p-16">
+      <h1 class="text-5xl font-semibold mb-10">{content.title}</h1>
 
-
-  <style>
-    h3 {
-      @apply text-xl;
-    }
-
-    p {
-      @apply pb-5;
-    }
-
-    p a {
-        @apply text-sky-500 font-semibold hover:font-bold;
-    }
-  </style>
-  
+      <div class="prose prose-h3:text-xl prose-p:pb-5 prose-a:text-sky-500 prose-a:font-semibold hover:prose-a:font-bold">
+        <slot />
+      </div>
+    </body>
 </html>
