@@ -6,7 +6,7 @@ export default async function Home() {
   console.log(posts);
   return (
     <>
-      <h1 className="text-6xl font-bold">tom's blog</h1>
+      <h1 className="text-6xl font-bold">tom&apos;s blog</h1>
       <Footer />
     </>
   );

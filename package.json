@@ -31,5 +31,8 @@
     "tailwindcss-animate": "^1.0.5",
     "typescript": "5.0.4",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "encoding": "^0.1.13"
   }
 }
