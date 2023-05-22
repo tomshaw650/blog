@@ -1,5 +1,6 @@
 import { env } from "@/env.mjs";
 import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -8,6 +9,8 @@ dayjs.extend(relativeTime);
 const notion = new Client({
   auth: env.NOTION_SECRET,
 });
+
+const n2m = new NotionToMarkdown({ notionClient: notion });
 
 type Tag = {
   name: string;
@@ -53,9 +56,9 @@ const getPageMetaData = (post: any) => {
   };
 
   return {
-    id: post.properties.slug.number,
+    id: post.id,
     name: post.properties.name.title[0].plain_text,
-    slug: post.properties.slug.number,
+    slug: post.properties.slug.rich_text[0].plain_text,
     description: post.properties.description.rich_text[0].plain_text,
     tags: getTags(post.properties.tags.multi_select),
     created_at: formatDate(post.properties.created_at.created_time),
@@ -79,4 +82,28 @@ export const getAllPublished = async () => {
   return allPosts.map((post) => {
     return getPageMetaData(post);
   });
+};
+
+export const getPost = async (slug: string) => {
+  const response = await notion.databases.query({
+    database_id: env.DATABASE_ID,
+    filter: {
+      property: "slug",
+      formula: {
+        string: {
+          equals: slug,
+        },
+      },
+    },
+  });
+
+  const page = response.results[0];
+  const metadata = getPageMetaData(page);
+  const mdblocks = await n2m.pageToMarkdown(page.id);
+  const mdString = n2m.toMarkdownString(mdblocks);
+
+  return {
+    metadata,
+    markdown: mdString,
+  };
 };
