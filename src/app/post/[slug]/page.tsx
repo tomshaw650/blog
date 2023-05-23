@@ -1,15 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar";
 import { Footer } from "@/components/footer";
 import { getAllPublished, getPost } from "@/utils/notion";
-import { Metadata, ResolvingMetadata } from "next";
+import { GetStaticProps, Metadata, ResolvingMetadata } from "next";
 import ReactMarkdown from "react-markdown";
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent?: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
-
   const post = await getPost(params.slug);
 
   return {
@@ -50,14 +48,4 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <Footer />
     </>
   );
-}
-
-export async function getStaticParams() {
-  const posts = await getAllPublished();
-
-  return {
-    params: {
-      slug: posts.map((post) => post.slug),
-    },
-  };
 }
