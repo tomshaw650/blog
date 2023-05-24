@@ -2,7 +2,7 @@ import { getAllPublished } from "@/utils/notion";
 import { Badge } from "@/components/badge";
 import { Footer } from "@/components/footer";
 
-export default async function Home() {
+export default async function Page() {
   const posts = await getAllPublished();
 
   return (
