@@ -1,7 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar";
 import { Footer } from "@/components/footer";
+import { LoadingPage } from "@/components/loading";
 import { getPost } from "@/utils/notion";
 import { Metadata } from "next";
+import { Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 
 export async function generateMetadata({
@@ -43,9 +45,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </span>
         </div>
       </section>
-      <ReactMarkdown className="prose-xl prose-ul:list-disc">
-        {page.markdown.parent}
-      </ReactMarkdown>
+      <Suspense fallback={<LoadingPage />}>
+        <ReactMarkdown className="prose-xl prose-ul:list-disc">
+          {page.markdown.parent}
+        </ReactMarkdown>
+      </Suspense>
       <Footer />
     </>
   );
