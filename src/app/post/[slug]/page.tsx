@@ -17,6 +17,12 @@ export async function generateMetadata({
     title: post.metadata.name,
     description: post.metadata.description,
     metadataBase: new URL("https://blog.tmsh.dev"),
+    openGraph: {
+      title: post.metadata.name,
+      description: post.metadata.description,
+      url: `blog.tmsh.dev/post/${post.metadata.slug}`,
+      siteName: `blog.tmsh.dev`,
+    },
   };
 }
 
